@@ -11,7 +11,6 @@ else
         source "job-config.xml.erb"
          variables(
            :git_url => repo['url'],
-           :build_command => '_knife_commands.sh.erb'
          )
       end
 
@@ -41,7 +40,6 @@ else
             source "job-config.xml.erb"
              variables(
                :git_url => cookbook.location.uri,
-               :build_command => '_cookbook_command.sh.erb'
              )
           end
 

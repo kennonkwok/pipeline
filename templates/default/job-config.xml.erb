@@ -32,11 +32,12 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.tasks.Shell>
-      <command>
-        <%= render @build_command, :options => {} %>
-      </command>
-    </hudson.tasks.Shell>
+    <ruby-proxy-object>
+      <ruby-object ruby-class="Jenkins::Tasks::BuilderProxy" pluginid="travis-yml">
+        <pluginid pluginid="travis-yml" ruby-class="String">travis-yml</pluginid>
+        <object ruby-class="TravisYmlBuilder" pluginid="travis-yml"/>
+      </ruby-object>
+    </ruby-proxy-object>
   </builders>
   <publishers/>
   <buildWrappers/>
