@@ -1,0 +1,19 @@
+env:
+  <% unless defined?(repo_name).nil? %>
+  - CHEF_ORG="<%= repo_name %>"
+  <% end %>
+script:
+  <% unless defined?(cookbook_name).nil? %>
+  - foodcritic .
+  <% end %>
+  - rubocop .
+after_success:
+  <% unless defined?(cookbook_name).nil? %>
+  - berks install
+  - berks upload --ssl-verify=false
+  <% end %>
+  <% unless defined?(repo_name).nil? %>
+  - knife upload --chef-repo-path . /
+  <% end %>
+after_failure:
+  - echo "oh noes!"
